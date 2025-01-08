@@ -21,7 +21,7 @@ const About=()=>{
       <div className='text-xl my-4'>
         <p>WHY <span className='text-gray-700 font-semibold'>CHOOSE US</span></p>
       </div>
-      <div className='grid grid-cols-auto gap-20 mb-20'>
+      <div className='grid grid-cols-auto gap-10 mb-20'>
         <div className='border px-5 md:px-10 sm:py-8 flex flex-col rounded-sm gap-5 text-[-15px] hover:bg-primary hover:text-white hover:scale-105 hover:shadow-lg transition-all duration-300 text-gray-600 cursor-pointer'>
           <b>Efficiency</b>
           <p>streamlined appoontment llllll llllll lll lllllll lllllll scheduling that firs into your bust liefetyle</p>
