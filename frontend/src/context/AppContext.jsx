@@ -13,7 +13,7 @@ const AppContextProvider=(props)=>{
     const backendUrl=import.meta.env.VITE_BACKEND_URL
     const [doctors,setDoctors]=useState([])
     const [token,setToken]=useState(localStorage.getItem('token')?localStorage.getItem('token'):false)
-
+    const [userData,setUserData]=useState(false)
   
 
     const getDoctorsData=async()=>{
@@ -30,13 +30,39 @@ const AppContextProvider=(props)=>{
         }
     }
 
+
+    const loadUserProfileData=async()=>{
+        try {
+            const {data}=await axios.get(backendUrl+'/api/user/get-profile',{headers:{token}})
+            if(data.success){
+                setUserData(data.userData)
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
     const value={
-        doctors,currencySymbol,token,setToken,backendUrl
+        doctors,
+        currencySymbol,
+        token,setToken,backendUrl,
+        userData,setUserData,loadUserProfileData
     }
 
     useEffect(()=>{
         getDoctorsData()
     },[])
+
+    useEffect(()=>{
+        if(token){
+            loadUserProfileData()
+        }else{
+            setUserData(false)
+        }
+    },[token])
 
     return (
         //Wraps the context provider around child components.
@@ -46,5 +72,7 @@ const AppContextProvider=(props)=>{
         </AppContext.Provider>
     )
 }
+
+
 
 export default AppContextProvider
