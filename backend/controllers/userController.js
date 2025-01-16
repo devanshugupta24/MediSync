@@ -57,15 +57,15 @@ const loginUser = async (req, res) => {
         // get user details from frontend
         const { email, password } = req.body;
 
-        // validation -not empty
-        if (!email || !password) {
-            return res.json({success:false, message: "Please enter all fields" });
-        }
+        // // validation -not empty
+        // if (!email || !password) {
+        //     return res.json({success:false, message: "Please enter all fields" });
+        // }
 
-        //validate the email format
-        if (!validator.isEmail(email)) {
-            return res.json({success:false, message: "Invalid email" });
-        }
+        // //validate the email format
+        // if (!validator.isEmail(email)) {
+        //     return res.json({success:false, message: "Invalid email" });
+        // }
 
         // find user in db
         const user = await userModel.findOne({ email });
@@ -75,12 +75,15 @@ const loginUser = async (req, res) => {
 
         // compare password
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.json({success:false, message: "Invalid credentials" });
-        }else{
-            //creating token for login 
+        if (isMatch) {
+             //creating token for login 
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
             res.json({success:true, token});
+            
+        }else{
+
+            res.json({success:false, message: "Invalid credentials" });
+          
         }
 
     } catch (error) {
