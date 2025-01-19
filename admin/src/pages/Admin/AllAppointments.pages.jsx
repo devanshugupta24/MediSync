@@ -7,6 +7,7 @@ const AllAppointments = () => {
 
   const {aToken,appointments,getAllAppointments,cancelAppointment}= useContext(AdminContext)
   const {calculateAge,slotDateFormat,currency}=useContext(AppContext)
+  
   useEffect(()=>{
     if(aToken){
       getAllAppointments()
