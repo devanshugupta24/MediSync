@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors:{
-        'primary':"#2a869c"  //15616d
+        'primary':"#3891a6"  //15616d
       },
       gridTemplateColumns:{
          'auto':'repeat(auto-fill,minmax(200px,1fr))'
