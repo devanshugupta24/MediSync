@@ -30,8 +30,8 @@ const Appointment = () => {
     setDocSlots([]); // Clears the docSlots state to prepare for new data.
   
     let today = new Date(); // creates a today object to get current date and time(Date contains real-time value)
-    let isTodayPastEndTime = today.getHours() >= 21; // Check if the current time is past 21:00. If true, skip today's slots.
-    let firstSlotIndex = -1; // To store the index of the first available slot (used for default selection).
+    let isTodayPastEndTime = today.getHours() >= 20; // Check if the current time is past 21:00. If true, skip today's slots.
+    let firstSlotIndex = 0; // To store the index of the first available slot (used for default selection).
   
     for (let i = 0; i < 7; i++) {
       // getting date with index

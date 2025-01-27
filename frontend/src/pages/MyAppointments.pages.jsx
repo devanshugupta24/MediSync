@@ -110,7 +110,7 @@ const MyAppointment = () => {
         {appointments.map((item,index)=>(
           <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
             <div>
-              <img className='w-32 bg-indigo-50' src={item.docData.image} alt="" />
+              <img className='w-32 bg-[#7badba]' src={item.docData.image} alt="" />
             </div>
             <div className='flex-1 text-sm text-zinc-600'>
               <p className='text-neutral-800 font-semibold'>{item.docData.name}</p>
