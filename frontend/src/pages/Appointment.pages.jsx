@@ -51,7 +51,7 @@ const Appointment = () => {
       // setting hours
       if (today.getDate() === currentDate.getDate()) {
         // if booking the slot for today
-        currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10); // agar aaj ka time 10 se jyada hai tb abhi jitna baj rha usse 1hr increase karke slot show karo otherwise 10am ka show karo
+        currentDate.setHours(currentDate.getHours() >= 10 ? currentDate.getHours() + 1 : 10); // agar aaj ka time 10 se jyada hai tb abhi jitna baj rha usse 1hr increase karke slot show karo otherwise 10am ka show karo
         currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0); // agar abhi time 30 se jyada ho rha hai i.e 11.45,1.50 tb slot me minutes 30 set kardo mtlb hour to next ho jayega to like agar abhi its 12.50 to slot dikhao 1.30 ka agar abhi 2.20 then slot 3:00
       } else {
         // if booking for aaj ke baad ke din ka
@@ -195,7 +195,7 @@ const Appointment = () => {
             </p>
           ))}
         </div>
-        <button onClick={bookAppointment} className='bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6 hover:bg-indigo-600 transition-all duration-200'>Book an Appointment</button>
+        <button onClick={bookAppointment} className='bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6 hover:bg-[#256878] transition-all duration-200'>Book an Appointment</button>
       </div>
       {/*-----listing related doctors------*/}
       <RelatedDoctors docId={docId} speciality={docInfo.speciality} />

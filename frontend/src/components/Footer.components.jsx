@@ -11,7 +11,7 @@ const Footer = () => {
             {/*-----Left section-------*/}
             <div>
                 <img className='mb-5 w-40'src={assets.logo} alt="" />
-                <p className='w-full md:w-2/3 text-gray-600 leading-6'>will add some text about the brief of my company MediSync just adding random text so that bs kich 2-4 line ka rahe so that change kar ske hhhh hjjjjjjjjjjjj kkkk</p>
+                <p className='w-full md:w-2/3 text-gray-600 leading-6'>MediSync is an innovative platform connecting patients with trusted doctors. It simplifies appointment booking, offers personalized health management tools, and ensures secure access to healthcare. With features like digital records, and reminders, MediSync makes healthcare convenient and efficient to your needs.</p>
             </div>
 
             {/*-----Center section-------*/}
@@ -37,7 +37,7 @@ const Footer = () => {
         <div>
             {/*-------Copyright text-----*/}
             <hr className='h-0.5 bg-gray-200' />
-            <p className='py-5 text-swm text-center'>Copyright 2024@ MediSync - All Right Reserved. </p>
+            <p className='py-5 text-swm text-center'>Copyright 2025@ MediSync - All Right Reserved. </p>
         </div>
     </div>
   )
