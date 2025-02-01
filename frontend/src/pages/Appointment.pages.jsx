@@ -5,14 +5,16 @@ import { assets } from '../assets/assets'
 import RelatedDoctors from '../components/RelatedDoctors.components'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import emailjs from '@emailjs/browser';
 
 
 const Appointment = () => {
 
   const {docId}=useParams()  // Extracts the docId parameter from the route URL.
-  const {doctors,currencySymbol,backendUrl,token,getDoctorsData}=useContext(AppContext)
+  const {doctors,currencySymbol,backendUrl,token,getDoctorsData,userData}=useContext(AppContext)
 
   const daysOfWeek=['SUN','MON','TUE','WED','THU','FRI','SAT']
+  const months=['','Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov','Dec']
 
   const navigate=useNavigate()
   const [docInfo,setDocInfo]=useState(false)
@@ -101,36 +103,81 @@ const Appointment = () => {
     setSlotIndex(firstSlotIndex); // Dynamically set slotIndex to the first available day with slots.
   };
   
-  
-  const bookAppointment=async()=>{
-    if(!token){
-      toast.warn('Login to book appointment')
-      return navigate('/login')
-    }
-
-    try {
-      const date=docSlots[slotIndex][0].datetime
-
-      let day=date.getDate()
-      let month=date.getMonth()+1
-      let year=date.getFullYear()
-
-      const slotDate=day+"-"+month +"-"+year
-
-      const {data}=await axios.post(backendUrl+'/api/user/book-appointment',{docId,slotDate,slotTime},{headers:{token}})
-      if(data.success){
-        toast.success(data.message)
-        getDoctorsData()
-        navigate('/my-appointments')
-      }else{
-        toast.error(data.message)
-      }
-      
-    } catch (error) {
-      console.log(error)
-      toast.error(error.message)
-    }
+  const slotDateFormat=(slotDate)=>{
+    const dateArray=slotDate.split('-')
+    return dateArray[0]+" "+months[Number(dateArray[1])]+ " "+dateArray[2]
   }
+
+
+  const sendEmail = (slotDate, slotTime) => {
+    if (!docInfo || !docInfo.name) return; // Ensure doctor info is available
+  
+    const templateParams = {
+      user_email: userData.email, // Replace this with the actual logged-in user email
+      user_name:userData.name,
+      doctor_name: docInfo.name,
+      appointment_date: slotDateFormat(slotDate),
+      appointment_time: slotTime,
+    };
+  
+    emailjs
+      .send(
+        import.meta.env.VITE_SERVICE_ID, 
+        import.meta.env.VITE_TEMPLATE_ID,
+        templateParams,
+        {
+          publicKey: import.meta.env.VITE_PUBLIC_KEY,
+        }
+      )
+      .then(
+        () => {
+          toast.success("Appointment confirmation email sent!");
+        },
+        (error) => {
+          
+          toast.error("Failed to send email.");
+        }
+      );
+  };
+
+  
+ 
+
+
+  const bookAppointment = async () => {
+    if (!token) {
+      toast.warn('Login to book appointment');
+      return navigate('/login');
+    }
+  
+    try {
+      const date = docSlots[slotIndex][0].datetime;
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+  
+      const slotDate = `${day}-${month}-${year}`;
+  
+      const { data } = await axios.post(
+        backendUrl + "/api/user/book-appointment",
+        { docId, slotDate, slotTime },
+        { headers: { token } }
+      );
+  
+      if (data.success) {
+        toast.success(data.message);
+        getDoctorsData();
+        sendEmail(slotDate, slotTime); // Send email after booking confirmation
+        navigate("/my-appointments");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  
 
     useEffect(()=>{
       if(doctors.length>0){
