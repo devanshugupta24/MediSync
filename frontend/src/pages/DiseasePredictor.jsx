@@ -60,13 +60,13 @@ const DiseasePredictor = () => {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-1/4 h-screen text-gray-800 p-5 border-r-2">
-        <h2 className="text-xl text-gray-700 font-bold">Select Predictor</h2>
+      <div className="w-[30%] sm:w-1/4 h-screen text-gray-800 p-2 sm:p-5 border-r-2">
+        <h2 className="text-[18px] text-gray-700 font-bold sm:text-xl">Select Predictor</h2>
         <ul className="mt-4">
-          <li className={`cursor-pointer rounded-lg box-shad px-4 py-2 ${selectedPredictor === "diabetes" && "bg-gray-300"}`} onClick={() => {setSelectedPredictor("diabetes"),setPrediction(null)}}>
+          <li className={`cursor-pointer rounded-lg  px-1 sm:px-4 text-[17px] py-2 ${selectedPredictor === "diabetes" && "bg-gray-300"}`} onClick={() => {setSelectedPredictor("diabetes"),setPrediction(null)}}>
             Diabetes Predictor
           </li>
-          <li className={`cursor-pointer rounded-lg box-shad px-4 py-2 ${selectedPredictor === "heart" && "bg-gray-300"} `} onClick={() => {setSelectedPredictor("heart"),setPrediction(null)}}>
+          <li className={`cursor-pointer rounded-lg  px-1 sm:px-4 text-[17px] py-2 ${selectedPredictor === "heart" && "bg-gray-300"} `} onClick={() => {setSelectedPredictor("heart"),setPrediction(null)}}>
             Heart Disease Predictor
           </li>
         </ul>
