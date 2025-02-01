@@ -43,7 +43,7 @@ const DiseasePredictor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const API_URL = import.meta.env.REACT_APP_API_URL || "http://127.0.0.1:5000";
+      const API_URL = import.meta.env.REACT_APP_API_URL || "http://127.0.0.1:10000";
       const features = selectedPredictor === "diabetes" 
         ? Object.values(formData).map(Number) 
         : Object.values(heartFormData).map(Number);
