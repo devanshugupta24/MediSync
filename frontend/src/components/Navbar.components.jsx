@@ -33,6 +33,10 @@ const Navbar = () => {
                 <li className='py-1'>CONTACT</li>
                 <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/>
             </NavLink>
+            <NavLink to='/disease-predictor'>
+                <li className='py-1'>DISEASE PREDICTOR</li>
+                <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/>
+            </NavLink>
         </ul>
         <div className='flex item-center gap-4'>
             {
@@ -63,6 +67,7 @@ const Navbar = () => {
                     <NavLink onClick={()=>setShowMenu(false)} to='/doctors'><p className='px-4 py-2 rounded inline-block hover:bg-blue-50'>ALL DOCTORS</p></NavLink>
                     <NavLink onClick={()=>setShowMenu(false)} to='/about'><p className='px-4 py-2 rounded inline-block hover:bg-blue-50'>ABOUT</p></NavLink>
                     <NavLink onClick={()=>setShowMenu(false)} to='/contact'><p className='px-4 py-2 rounded inline-block hover:bg-blue-50'>CONTACT</p></NavLink>
+                    <NavLink onClick={()=>setShowMenu(false)} to='/disease-predictor'><p className='px-4 py-2 rounded inline-block hover:bg-blue-50'>DISEASE PREDICTOR</p></NavLink>
 
                 </ul>
             </div>

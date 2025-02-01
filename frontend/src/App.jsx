@@ -12,6 +12,7 @@ import Navbar from './components/Navbar.components'
 import Footer from './components/Footer.components'
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import DiseasePredictor from './pages/DiseasePredictor'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/my-profile' element={<MyProfile/>} />
         <Route path='/my-appointments' element={<MyAppointment/>} /> 
         <Route path='/appointment/:docId' element={<Appointment/>} />
+        <Route path='/disease-predictor' element={<DiseasePredictor/>}/>
       </Routes>
       <Footer/>
     </div>
