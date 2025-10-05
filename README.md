@@ -15,4 +15,5 @@
  ◦ Tools Used :JavaScript, React, Node.js, Express.js, MongoDB, EmailJS, Razorpay, Flask, Python
 
 
-[click to visit site](https://medisync-frontend.onrender.com/)
+[click to visit user site](https://medisync-frontend.onrender.com/)
+[click to visit doctor and admin site](https://medisync-frontend.onrender.com/)
