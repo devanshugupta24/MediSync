@@ -17,4 +17,4 @@
 
 [click to visit user site](https://medisync-frontend.onrender.com/)
 
-[click to visit doctor and admin site](https://medisync-frontend.onrender.com/)
+[click to visit doctor and admin site](https://medisync-admin.onrender.com)
